@@ -1,0 +1,6 @@
+/*.iml
+
+/composer.lock
+/vendor/
+
+/phpunit.xml

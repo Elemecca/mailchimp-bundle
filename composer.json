@@ -1,0 +1,28 @@
+{
+    "name": "elemecca/mailchimp-bundle",
+    "description": "Manage your MailChimp lists from Symfony.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sam Hanes",
+            "email": "sam@maltera.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "symfony/framework-bundle": "^2.8",
+        "symfony/config": "^2.8",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elemecca\\MailchimpBundle\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
