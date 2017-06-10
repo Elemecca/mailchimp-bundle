@@ -8,7 +8,7 @@
     <service id="elemecca_mailchimp.client"
              class="Elemecca\MailchimpBundle\Service\Client"
              >
-      <argument>%elemecca_mailchimp.api_key%/</argument>
+      <argument>%elemecca_mailchimp.api_key%</argument>
     </service>
 
   </services>

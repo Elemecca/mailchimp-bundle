@@ -14,8 +14,14 @@ class Configuration implements ConfigurationInterface
         $rootNode
           ->children()
             ->scalarNode('key')
-              ->isRequired()->cannotBeEmpty()
               ->info('Your Mailchimp API key')
+              ->isRequired()->cannotBeEmpty()
+              ->validate()
+              ->ifTrue(function ($apiKey) {
+                return !preg_match('/^[0-9a-f]+-[a-z]+[0-9]+$/i', $apiKey);
+              })
+                ->thenInvalid('Invalid API key')
+              ->end()
             ->end()
           ->end();
 
