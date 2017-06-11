@@ -26,11 +26,12 @@ class ListShowCommand extends ContainerAwareCommand
         $table = new Table($output);
         $table->setStyle('compact');
 
-        $table->setHeaders(['ID', 'Name']);
+        $table->setHeaders(['ID', 'Name', 'Members']);
         foreach ($lists as $list) {
             $table->addRow([
-                $list->getId(),
-                $list->getName(),
+                $list->id,
+                $list->name,
+                $list->stats->member_count,
             ]);
         }
 

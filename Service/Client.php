@@ -44,17 +44,9 @@ class Client
     }
 
 
-    /**
-     * @return MailchimpList[]
-     */
     public function getLists() {
         $res = $this->client->get('lists');
-        $body = json_decode($res->getBody(), JSON_OBJECT_AS_ARRAY);
-
-        $lists = [];
-        foreach ($body['lists'] as $record) {
-            $lists[] = MailchimpList::fromRecord($record);
-        }
-        return $lists;
+        $body = json_decode($res->getBody());
+        return $body->lists;
     }
 }
