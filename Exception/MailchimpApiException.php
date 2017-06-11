@@ -2,6 +2,7 @@
 
 namespace Elemecca\MailchimpBundle\Exception;
 
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 
 class MailchimpApiException extends \RuntimeException
@@ -13,8 +14,20 @@ class MailchimpApiException extends \RuntimeException
     public static function create(RequestException $cause) {
         $self = new self($cause);
 
+        if ($cause instanceof ConnectException) {
+            $ctx = $cause->getHandlerContext();
+            $self->message = "API connection failed: "
+                . (isset($ctx['error']) ? $ctx['error'] : $cause->getMessage())
+            ;
+            return $self;
+        }
+
+        $body = null;
         $res = $cause->getResponse();
-        $body = json_decode($res->getBody(), true);
+        if ($res) {
+            $body = json_decode($res->getBody(), true);
+        }
+
         if ($body) {
             $self->type = $body['type'];
             $self->title = $body['title'];
